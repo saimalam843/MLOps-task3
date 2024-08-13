@@ -1,6 +1,6 @@
 const BTUser = require('../Models/user');
 
-// Fetch notifications for the logged-in user
+// get notifications
 exports.getNotifications = async (req, res) => {
     try {
         const userId = req.user.id;

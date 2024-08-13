@@ -1,7 +1,7 @@
 const Expense = require('../Models/expense');
 const BTUser = require('../Models/user');
 
-// Fetch all expenses for the logged-in user with filtering, sorting, and pagination
+// get all expenses with filtering, sorting, and pagination
 exports.getAllExpenses = async (req, res) => {
     try {
         const { date, keyword, sort, page = 1, limit = 10 } = req.query;
@@ -27,7 +27,7 @@ exports.getAllExpenses = async (req, res) => {
         // Pagination
         const skip = (page - 1) * limit;
 
-        // Fetch expenses
+        // get expenses
         const expenses = await Expense.find(filter)
             .sort(sortOption)
             .skip(skip)
@@ -51,7 +51,7 @@ exports.getAllExpenses = async (req, res) => {
     }
 };
 
-// Create a new expense
+// new expense
 exports.createExpense = async (req, res) => {
     try {
         const { title, price, date } = req.body;
@@ -66,7 +66,7 @@ exports.createExpense = async (req, res) => {
 
         await newExpense.save();
 
-        // Add a notification for the user
+        // user notified
         await BTUser.findByIdAndUpdate(userId, {
             $push: {
                 notifications: {
@@ -83,7 +83,7 @@ exports.createExpense = async (req, res) => {
     }
 };
 
-// Update an existing expense
+// update expense
 exports.updateExpense = async (req, res) => {
     try {
         const { id } = req.params;
@@ -100,7 +100,7 @@ exports.updateExpense = async (req, res) => {
             return res.status(404).json({ message: 'Expense not found' });
         }
 
-        // Add a notification for the user
+        // user notified
         await BTUser.findByIdAndUpdate(userId, {
             $push: {
                 notifications: {
@@ -117,7 +117,7 @@ exports.updateExpense = async (req, res) => {
     }
 };
 
-// Delete an expense
+// Delete expense
 exports.deleteExpense = async (req, res) => {
     try {
         const { id } = req.params;
@@ -129,7 +129,7 @@ exports.deleteExpense = async (req, res) => {
             return res.status(404).json({ message: 'Expense not found' });
         }
 
-        // Add a notification for the user
+        // user notified
         await BTUser.findByIdAndUpdate(userId, {
             $push: {
                 notifications: {

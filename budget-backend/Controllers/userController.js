@@ -53,7 +53,7 @@ exports.login = async (req, res) => {
 
 
 
-// Endpoint to fetch user profile
+// get user profile
 exports.getProfile = async (req, res) => {
     try {
         const userId = req.user.id; // Ensure this value is correct
