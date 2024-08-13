@@ -23,10 +23,10 @@ app.use('/', notificationRoutes);
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.once('open', () => {
-    console.log('Connected to database');
+    console.log('Connected to MongoDB');
 });
 
-// API
+
 app.get("/", (req, res) => {
     res.send("Express app is running");
 });
