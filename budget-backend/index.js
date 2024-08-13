@@ -7,6 +7,8 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 const userRoutes = require('./Routes/userRoutes');
+const expenseRoutes = require('./Routes/expenseRoutes');
+const notificationRoutes = require('./Routes/notificationRoutes');
 
 // Middleware
 app.use(express.json());
@@ -14,6 +16,8 @@ app.use(cors());
 
 // Routes
 app.use('/', userRoutes);
+app.use('/', expenseRoutes);
+app.use('/', notificationRoutes);
 
 // DB connection
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
