@@ -2,7 +2,7 @@ const BTUser = require('../Models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-// Endpoint for signup
+// signup
 exports.signup = async (req, res) => {
     try {
         const { firstName, lastName, email, password, budget } = req.body;
@@ -26,7 +26,7 @@ exports.signup = async (req, res) => {
     }
 };
 
-// Endpoint for login
+//login
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -35,7 +35,8 @@ exports.login = async (req, res) => {
         if (BTuser) {
             const passCheck = await bcrypt.compare(password, BTuser.password);
             if (passCheck) {
-                const data = { BTuser: { id: BTuser.id } };
+                // Use 'user' as the key, consistent with the signup controller
+                const data = { user: { id: BTuser.id } };
                 const token = jwt.sign(data, process.env.JWT_SECRET);
                 return res.json({ success: true, token });
             } else {
@@ -44,6 +45,78 @@ exports.login = async (req, res) => {
         } else {
             return res.status(404).json({ success: false, error: "User does not exist" });
         }
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
+    }
+};
+
+
+
+
+// Endpoint to fetch user profile
+exports.getProfile = async (req, res) => {
+    try {
+        const userId = req.user.id; // Ensure this value is correct
+        const user = await BTUser.findById(userId).select('-password'); // Exclude password from the response
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.json(user);
+    } catch (error) {
+        console.error('Error fetching user profile:', error); // Log the error for debugging
+        res.status(500).json({ message: "Server error", error: error.message || error });
+    }
+};
+
+
+// update user profile
+exports.updateProfile = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const { firstName, lastName, budget } = req.body;
+        const updatedUser = await BTUser.findByIdAndUpdate(
+            userId,
+            { firstName, lastName, budget },
+            { new: true, runValidators: true }
+        ).select('-password');
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
+    }
+};
+
+// get all users (Admin only)
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await BTUser.find().select('-password');
+        res.json(users);
+    } catch (error) {
+        console.error('Error fetching users:', error); // Logging to find error
+        res.status(500).json({ message: "Server error", error: error.message || error });
+    }
+};
+
+
+// update user information (Admin only)
+exports.updateUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { firstName, lastName, budget, role } = req.body;
+
+        const updatedUser = await BTUser.findByIdAndUpdate(
+            id,
+            { firstName, lastName, budget, role },
+            { new: true, runValidators: true }
+        ).select('-password');
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.json(updatedUser);
     } catch (error) {
         res.status(500).json({ message: "Server error", error });
     }
