@@ -9,4 +9,6 @@ router.post('/expenses', auth, expenseController.createExpense);
 router.put('/expenses/:id', auth, expenseController.updateExpense);
 router.delete('/expenses/:id', auth, expenseController.deleteExpense);
 
+router.get('/expenses/monthly', auth, expenseController.getMonthlyExpenses);
+
 module.exports = router;

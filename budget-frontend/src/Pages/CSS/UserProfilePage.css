@@ -1,0 +1,119 @@
+.profile-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1% 2% 1% 2%;
+    border-bottom: 1px solid #dde4f0;
+    padding-bottom: 1%;
+  }
+  
+  .navigate-back{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .anchor-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* width: 100%; */
+    /* position: relative */
+    border-bottom: 1px solid #dde4f0; 
+    
+  }
+
+  .anchor-container .anchor .ant-anchor-ink {
+    bottom: -1px;
+    /* background-color: purple; */
+    /* color: purple; */
+    height: 3px;
+}
+
+.content-user{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 2%;
+    gap: 30px;
+}
+.content-right{
+    width: 100%;
+}
+.card-user{
+    width: 425px;
+}
+
+.card-top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #dde4f0;
+    padding-bottom: 10px;
+    gap: 5px;
+
+}
+.card-bottom{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    margin-top: 10%;
+}
+
+.color{
+    color: #9E9E9E;
+}
+
+#profile{
+    background-color: orange;
+}
+
+#account{
+    background-color: red   ;
+}
+
+.account-card{
+    width: 100%;
+}
+
+.details-container-profile {
+    display: flex;
+    gap: 20px;
+  }
+.details-container-account {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .details-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+    gap: 20px;
+  }
+
+  .detail-div{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    border-bottom: 1px solid #dde4f0;
+    padding-bottom: 3%;
+
+  }
+
+  .forminput-div{
+    display: flex;
+    /* justify-content: space-between; */
+    gap:20px;
+  }
+
+  .address {
+    margin-bottom: 2%;
+  }
+  .input-field{
+    flex-grow: 1;
+    height: 50px;
+    width: 100% ;
+    min-width: 45%;
+  }

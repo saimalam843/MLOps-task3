@@ -1,5 +1,6 @@
 const Expense = require('../Models/expense');
 const BTUser = require('../Models/user');
+const mongoose = require('mongoose');
 
 // get all expenses with filtering, sorting, and pagination
 exports.getAllExpenses = async (req, res) => {
@@ -142,6 +143,35 @@ exports.deleteExpense = async (req, res) => {
         res.json({ success: true, message: 'Expense deleted successfully' });
     } catch (error) {
         console.error('Error deleting expense:', error);
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
+
+
+
+exports.getMonthlyExpenses = async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        const expenses = await Expense.aggregate([
+            {
+                $match: { user: new mongoose.Types.ObjectId(userId) }  // Use 'new' to instantiate ObjectId
+            },
+            {
+                $group: {
+                    _id: { $month: "$date" },
+                    totalExpenses: { $sum: "$price" }
+                }
+            },
+            {
+                $sort: { _id: 1 } // Sort by month
+            }
+        ]);
+
+        res.json({ success: true, data: expenses });
+    } catch (error) {
+        console.error('Error fetching monthly expenses:', error);
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };

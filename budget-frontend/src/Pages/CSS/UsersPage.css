@@ -1,0 +1,87 @@
+.users-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1% 2% 1% 2%;
+    padding-bottom: 1%;
+    border-bottom: 1px solid #dde4f0;
+  }
+  
+  .btn-container {
+    width: 12%;
+  }
+  
+  .table-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2%;
+  }
+  
+  .table {
+    width: 95%;
+  }
+  .table .ant-table-thead > tr > th { 
+      background-color: white;
+  }
+  .ant-table-title{
+      padding: 0;
+  }
+  .custom-header {
+      /* background-color: #f0f2f5; */
+      /* padding: 16px; Adjust padding as needed */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    
+    .header-left {
+      font-size: 1.2rem; /* Adjust font size as needed */
+      font-weight: bold;
+    }
+    
+    .header-right {
+      display: flex;
+      gap: 16px; /* Space between elements */
+    }
+  .ant-progress-bg {
+    background-color: #7539ff !important; /* Default color */
+  }
+  
+  .edit-btn {
+    color: #7539ff;
+    font-size: 20px;
+  }
+  .delete-btn {
+    color: #ff5771;
+    font-size: 20px;
+  }
+  .sort{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .sort-bg{
+      background-color: #E1E8F2;
+      border: 1px solid #DDE4F0;
+      border-radius: 4px 0px 0px 4px;
+      height: 100%;
+  }
+  .rows{
+      height: 70px;
+  }
+  .custom-footer{
+      height: 80px;
+      display: flex;
+      align-items: center;
+      color: #667085;
+      /* background-color: white; */
+  }
+  .css-dev-only-do-not-override-bpb6ui .ant-table-wrapper .ant-table-footer {
+      background-color: white;
+  }
+  

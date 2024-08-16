@@ -1,10 +1,12 @@
 const BTUser = require('../Models/user');
 
-// get notifications
+// get latest three notifications
 exports.getNotifications = async (req, res) => {
     try {
         const userId = req.user.id;
-        const user = await BTUser.findById(userId).select('notifications');
+        const user = await BTUser.findById(userId)
+            .select('notifications')
+            .slice('notifications', -3); // Fetch the last three notifications
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });

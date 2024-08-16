@@ -1,0 +1,32 @@
+.analysis-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1% 2% 1% 2%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    border-bottom: 1px solid #dde4f0;
+  }
+  
+  .btn-container {
+    width: 12%;
+  }
+  .graph-div{
+    margin: 1% 2% 1% 2%;
+
+
+  }
+
+.graph-div {
+  width: 80%; 
+  margin: 0 auto; 
+}
+
+.card {
+  padding: 20px;
+}
+
+.chart-canvas {
+  width: 100% !important;
+  height: 300px !important;
+}
