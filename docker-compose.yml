@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./budget-backend
+    ports:
+      - "3000:3000"
+    networks:
+      - budget-network
+
+  frontend:
+    build:
+      context: ./budget-frontend
+    ports:
+      - "5000:5000"
+    networks:
+      - budget-network
+
+networks:
+  budget-network:
+    driver: bridge
